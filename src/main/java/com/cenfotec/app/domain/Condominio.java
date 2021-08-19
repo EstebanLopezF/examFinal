@@ -13,10 +13,25 @@ public class Condominio {
     private String direccion;
     private String cedulaJuridica;
     private String representante;
-    private int cantidadUnidades;
+    private long cantidadUnidades;
     private String estado;
     private double cuota;
 
+    public Condominio() {}
+    
+    public Condominio(long id, String nombre, String direccion, String cedulaJuridica, String representante, long cantidadUnidades, 
+    		String estado, double cuota) {
+    	
+    	this.id = id;
+    	this.nombre = nombre;
+    	this.direccion = direccion;
+    	this.cedulaJuridica = cedulaJuridica;
+    	this.representante = representante;
+    	this.cantidadUnidades = cantidadUnidades;
+    	this.estado = estado;
+    	this.cuota = cuota;
+    }
+    
     public long getId() {
         return id;
     }
@@ -57,11 +72,11 @@ public class Condominio {
         this.representante = representante;
     }
     
-    public int getCantidadUnidades() {
+    public long getCantidadUnidades() {
         return cantidadUnidades;
     }
 
-    public void setCantidadUnidades(int cantidadUnidades) {
+    public void setCantidadUnidades(long cantidadUnidades) {
         this.cantidadUnidades = cantidadUnidades;
     }
     
