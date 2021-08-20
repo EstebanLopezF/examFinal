@@ -7,9 +7,9 @@ import java.sql.Date;
 public class Condominio {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String nombre;
+	private String nombre;
     private String direccion;
     private String cedulaJuridica;
     private String representante;

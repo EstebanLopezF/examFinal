@@ -36,5 +36,9 @@ public class CondominioServiceImpl implements CondominioService {
         		condominio.getRepresentante(), condominio.getCuota());
     }
     
+    public void disable(long id) {
+    	repo.disable(id);
+    }
+    
 }
 

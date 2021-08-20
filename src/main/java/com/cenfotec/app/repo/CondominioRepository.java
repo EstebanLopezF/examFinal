@@ -6,13 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import com.cenfotec.app.domain.Atleta;
 import com.cenfotec.app.domain.Condominio;
 
 @Repository
-public interface CondominioRepository extends JpaRepository<Atleta, Long>{
+public interface CondominioRepository extends JpaRepository<Condominio, Long>{
     
-	@Query(value = "{call list_condominio}", nativeQuery = true)
+	@Query(value = "{call list_condominio()}", nativeQuery = true)
 	List<Condominio> listall();
     
     @Query(value = "{call getid_condominio(:idParam)}", nativeQuery = true)
@@ -54,6 +53,9 @@ public interface CondominioRepository extends JpaRepository<Atleta, Long>{
     		@Param("representanteParam")String representanteParam,
     		@Param("cuotaParam")double cuotaParam
     );
+    
+    @Query(value = "{call desactivar_condominio(:idParam)}", nativeQuery = true)
+    void disable(@Param("idParam") long id);
     
 }
 

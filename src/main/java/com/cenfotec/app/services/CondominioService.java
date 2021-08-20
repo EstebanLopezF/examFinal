@@ -11,5 +11,6 @@ public interface CondominioService {
     public List<Condominio> getByStatus(String status);
     public void create(Condominio condominio);
     public void update(Condominio condominio);
+    public void disable(long id);
     
 }

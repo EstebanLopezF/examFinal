@@ -11,6 +11,13 @@ public class Amenidad {
     private long id;
 	private long idCondominio;
 	private String amenidad;
+		
+	public Amenidad() {}
+	
+	public Amenidad(long idCondominio, String amenidad) {
+		this.idCondominio = idCondominio;
+		this.amenidad = amenidad;
+	}
 
     public long getId() {
         return id;
