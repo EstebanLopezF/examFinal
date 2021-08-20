@@ -20,6 +20,8 @@ public class MainController {
     @Autowired
     AmenidadService amenidadService;
        
+  //------------------------------------------------------------------------------------------------------------Condominio:
+    
     @GetMapping("/condominio")
     List getAll(){
         return condominioService.getAll();
@@ -47,7 +49,7 @@ public class MainController {
         return new ResponseEntity("condominio creado", HttpStatus.OK);
     }
     
-    @PutMapping("/condominio")												//un put recibe todo.
+    @PutMapping("/condominio")												
     ResponseEntity<?> update(@RequestBody Condominio condominio){
     	condominioService.update(condominio);
         return new ResponseEntity("condominio actualizado", HttpStatus.OK);
@@ -59,11 +61,32 @@ public class MainController {
         return new ResponseEntity("condominio actualizado", HttpStatus.OK);
     }
 
+   //------------------------------------------------------------------------------------------------------------Amenidades:
+   
     @GetMapping(path = {"/amenidad/amenidadXcondominio/{id}"})							
     ResponseEntity<List<Amenidad>> amenidadXcondominio(@PathVariable("id") long id){
         List<Amenidad> amenidades = amenidadService.getByCondominio(id);
         return new ResponseEntity(amenidades, HttpStatus.OK);
     }
+    
+    @PostMapping("/amenidad")
+    ResponseEntity<?> createAmenidad(@RequestBody Amenidad amenidad){
+    	amenidadService.create(amenidad);
+        return new ResponseEntity("Amenidad creada", HttpStatus.OK);
+    }
+    
+    //------------------------------------------------------------------------------------------------------------Cuota Historico:
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
         

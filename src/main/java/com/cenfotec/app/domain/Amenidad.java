@@ -1,7 +1,6 @@
 package com.cenfotec.app.domain;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 public class Amenidad {
@@ -13,6 +12,12 @@ public class Amenidad {
 	private String amenidad;
 		
 	public Amenidad() {}
+	
+	public Amenidad(long id, long idCondominio, String amenidad) {
+		this.id = id;
+		this.idCondominio = idCondominio;
+		this.amenidad = amenidad;
+	}
 	
 	public Amenidad(long idCondominio, String amenidad) {
 		this.idCondominio = idCondominio;
@@ -32,7 +37,7 @@ public class Amenidad {
     }
 
     public void setIdCondominio(long idCondominio) {
-        this.id = idCondominio;
+        this.idCondominio = idCondominio;
     }
     
     public String getAmenidad() {
