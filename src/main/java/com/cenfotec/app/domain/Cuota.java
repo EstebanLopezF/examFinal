@@ -13,6 +13,16 @@ public class Cuota {
 	private LocalDate fecha;
 	private double precio;
 
+	public Cuota() {}
+	
+	public Cuota(long id, long idCondominio, LocalDate fecha, double precio) {
+		this.id = id;
+		this.idCondominio = idCondominio;
+		this.fecha = fecha;
+		this.precio = precio;
+	}
+	
+	
     public long getId() {
         return id;
     }

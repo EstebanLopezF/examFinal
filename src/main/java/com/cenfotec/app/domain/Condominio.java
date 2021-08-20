@@ -1,7 +1,6 @@
 package com.cenfotec.app.domain;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 public class Condominio {

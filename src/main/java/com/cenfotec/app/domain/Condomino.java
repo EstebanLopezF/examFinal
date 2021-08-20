@@ -1,7 +1,6 @@
 package com.cenfotec.app.domain;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 public class Condomino {
@@ -13,6 +12,15 @@ public class Condomino {
 	private String nombre;
     private String estado;
 
+    public Condomino() {}
+    
+    public Condomino(long id, long idCondominio, String nombre, String estado) {
+    	this.id = id;
+    	this.idCondominio = idCondominio;
+    	this.nombre = nombre;
+    	this.estado = estado;
+    }    
+    
     public long getId() {
         return id;
     }
