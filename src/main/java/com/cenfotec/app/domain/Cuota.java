@@ -26,7 +26,7 @@ public class Cuota {
     }
 
     public void setIdCondominio(long idCondominio) {
-        this.id = idCondominio;
+        this.idCondominio = idCondominio;
     }
     
     public LocalDate getFecha() {

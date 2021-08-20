@@ -2,8 +2,11 @@ package com.cenfotec.app.controllers;
 
 import com.cenfotec.app.domain.Amenidad;
 import com.cenfotec.app.domain.Condominio;
+import com.cenfotec.app.domain.Cuota;
 import com.cenfotec.app.services.AmenidadService;
 import com.cenfotec.app.services.CondominioService;
+import com.cenfotec.app.services.CuotaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,9 @@ public class MainController {
     
     @Autowired
     AmenidadService amenidadService;
+    
+    @Autowired
+    CuotaService cuotaService;
        
   //------------------------------------------------------------------------------------------------------------Condominio:
     
@@ -78,9 +84,17 @@ public class MainController {
     //------------------------------------------------------------------------------------------------------------Cuota Historico:
     
     
+    @PostMapping("/cuota")
+    ResponseEntity<?> createCuota(@RequestBody Cuota cuota){
+    	cuotaService.create(cuota);
+        return new ResponseEntity("Cuota Historica creada", HttpStatus.OK);
+    }
     
-    
-    
+    @GetMapping(path = {"/cuota/cuotaXcondominio/{id}"})							
+    ResponseEntity<List<Amenidad>> cuotaXcondominio(@PathVariable("id") long id){
+        List<Cuota> amenidades = cuotaService.getByCondominio(id);
+        return new ResponseEntity(amenidades, HttpStatus.OK);
+    }
     
     
     

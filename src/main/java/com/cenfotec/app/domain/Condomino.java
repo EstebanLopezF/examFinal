@@ -26,7 +26,7 @@ public class Condomino {
     }
 
     public void setIdCondominio(long idCondominio) {
-        this.id = idCondominio;
+        this.idCondominio = idCondominio;
     }
     
     public String getNombre() {
