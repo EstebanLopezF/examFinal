@@ -1,24 +1,27 @@
 package com.cenfotec.app.services;
 
 import com.cenfotec.app.domain.Condominio;
+import com.cenfotec.app.domain.Cuota;
 import com.cenfotec.app.repo.CondominioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CondominioServiceImpl implements CondominioService {
 
     @Autowired
     CondominioRepository repo;
+    
+    @Autowired
+    CuotaService cuotaService;
 
     @Override
     public List<Condominio> getAll() {
         return repo.listall();
     }
     
-    public Optional<Condominio> getById(long id){
+    public Condominio getById(long id){
         return repo.getById(id);
     }
 
@@ -31,9 +34,28 @@ public class CondominioServiceImpl implements CondominioService {
         		condominio.getRepresentante(), condominio.getEstado(), condominio.getCuota());
     }
         
-    public void update(Condominio condominio){
-        repo.update(condominio.getId(), condominio.getCantidadUnidades(), condominio.getCedulaJuridica(), condominio.getDireccion(), condominio.getNombre(), 
-        		condominio.getRepresentante(), condominio.getCuota());
+    public boolean update(Condominio condominio){
+    	   	
+    	Condominio condominiotty = repo.getById(condominio.getId());
+    	  	
+    	if (condominiotty != null && condominiotty.getEstado() != "inactivo" ){
+    		
+    		try {
+            repo.update(condominio.getId(), condominio.getCantidadUnidades(), condominio.getCedulaJuridica(), condominio.getDireccion(), condominio.getNombre(), 
+            		condominio.getRepresentante(), condominio.getCuota());
+            
+            if(condominio.getCuota() != condominiotty.getCuota()) {
+            	Cuota cuota = new Cuota(condominio.getId(),condominiotty.getCuota());
+            	cuotaService.create(cuota);
+            }
+            
+            return true;
+    		} catch (Exception e) {
+    			//Failed to get the Condominio by id or to update the Condominio.
+    			return false;
+    		}
+    	} 
+    	return false;
     }
     
     public void disable(long id) {

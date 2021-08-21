@@ -1,7 +1,6 @@
 package com.cenfotec.app.repo;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +14,7 @@ public interface CondominioRepository extends JpaRepository<Condominio, Long>{
 	List<Condominio> listall();
     
     @Query(value = "{call getid_condominio(:idParam)}", nativeQuery = true)
-    Optional<Condominio> getById(@Param("idParam") long id);
+    Condominio getById(@Param("idParam") long id);
     
     @Query(value = "{call create_condominio(:cantidadUnidadesParam, :cedulaJuridicaParam, :direccionParam, :nombreParam, :representanteParam, :estadoParam, "
     		+ ":cuotaParam )}", nativeQuery = true)

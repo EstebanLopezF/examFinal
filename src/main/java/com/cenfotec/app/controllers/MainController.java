@@ -40,9 +40,9 @@ public class MainController {
     
     @GetMapping(path = {"/condominio/{id}"})
     ResponseEntity<Condominio> findById(@PathVariable long id){
-        Optional<Condominio> result = condominioService.getById(id);
-        if (result.isPresent()){
-            return ResponseEntity.ok().body(result.get());
+        Condominio result = condominioService.getById(id);
+        if (result != null){
+            return ResponseEntity.ok().body(result);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -62,8 +62,12 @@ public class MainController {
     
     @PutMapping("/condominio")												
     ResponseEntity<?> update(@RequestBody Condominio condominio){
-    	condominioService.update(condominio);
-        return new ResponseEntity("condominio actualizado", HttpStatus.OK);
+    	boolean response = condominioService.update(condominio);
+    	if (response) {
+    		return new ResponseEntity("condominio actualizado", HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity("El condominio no se pudo actualizar", HttpStatus.UNAUTHORIZED);
+    	}
     }
     
    @PutMapping("/condominio/desactivar/{id}")

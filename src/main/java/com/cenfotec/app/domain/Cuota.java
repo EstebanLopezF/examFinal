@@ -22,6 +22,11 @@ public class Cuota {
 		this.precio = precio;
 	}
 	
+	public Cuota(long idCondominio, double precio) {
+		this.idCondominio = idCondominio;
+		this.precio = precio;
+	}
+	
 	
     public long getId() {
         return id;
