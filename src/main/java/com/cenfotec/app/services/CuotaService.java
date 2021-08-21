@@ -7,6 +7,6 @@ import java.util.List;
 public interface CuotaService {
 
     public List<Cuota> getByCondominio(long id);
-    public void create(Cuota cuota);
+    public boolean create(Cuota cuota);
     
 }

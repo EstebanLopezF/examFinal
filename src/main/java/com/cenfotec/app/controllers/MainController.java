@@ -107,8 +107,13 @@ public class MainController {
     
     @PostMapping("/cuota")
     ResponseEntity<?> createCuota(@RequestBody Cuota cuota){
-    	cuotaService.create(cuota);
-        return new ResponseEntity("Cuota Historica creada", HttpStatus.OK);
+    	boolean response = cuotaService.create(cuota);
+    	if (response) {
+    		return new ResponseEntity("Cuota Historico creado", HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity("Error: El historico no pudo ser creado", HttpStatus.UNAUTHORIZED);
+    	}
+        
     }
     
     @GetMapping(path = {"/cuota/cuotaXcondominio/{id}"})							
@@ -116,7 +121,6 @@ public class MainController {
         List<Cuota> amenidades = cuotaService.getByCondominio(id);
         return new ResponseEntity(amenidades, HttpStatus.OK);
     }
-    
     
     //------------------------------------------------------------------------------------------------------------Condomino:
     

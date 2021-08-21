@@ -17,8 +17,14 @@ public class CuotaServiceImpl implements CuotaService {
         return repo.getByCondominio(id);
     }
     
-    public void create(Cuota cuota){
+    public boolean create(Cuota cuota){
+    	try {
         repo.create(cuota.getIdCondominio(), cuota.getPrecio());
+        return true;
+    	} catch(Exception e) {
+    		//Failed to create historico de cuota;
+    		return false;
+    	}
     }
     
 }
