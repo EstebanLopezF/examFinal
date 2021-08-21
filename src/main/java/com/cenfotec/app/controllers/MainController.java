@@ -73,7 +73,7 @@ public class MainController {
    @PutMapping("/condominio/desactivar/{id}")
     public ResponseEntity<?> disable(@PathVariable("id") long id){
     	condominioService.disable(id);
-        return new ResponseEntity("condominio actualizado", HttpStatus.OK);
+        return new ResponseEntity("condominio desactivado", HttpStatus.OK);
     }
 
    //------------------------------------------------------------------------------------------------------------Amenidades:

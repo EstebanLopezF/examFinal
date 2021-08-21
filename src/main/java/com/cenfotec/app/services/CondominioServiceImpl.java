@@ -38,7 +38,7 @@ public class CondominioServiceImpl implements CondominioService {
     	   	
     	Condominio condominiotty = repo.getById(condominio.getId());
     	  	
-    	if (condominiotty != null && condominiotty.getEstado() != "inactivo" ){
+    	if (condominiotty != null && condominiotty.getEstado().equals(new String("activo")) ){
     		
     		try {
             repo.update(condominio.getId(), condominio.getCantidadUnidades(), condominio.getCedulaJuridica(), condominio.getDireccion(), condominio.getNombre(), 
