@@ -7,9 +7,9 @@ import java.util.Optional;
 public interface CondominoService {
 
     public Condomino getById(long id);
-    public void create(Condomino condomino);
+    public boolean create(Condomino condomino);
     public List<Condomino> getByCondominio(long id);
     public boolean update(Condomino condomino);
-    public void disable(long id);
+    public boolean disable(long id);
     
 }

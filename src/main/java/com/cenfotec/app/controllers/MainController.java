@@ -103,8 +103,7 @@ public class MainController {
     }
     
     //------------------------------------------------------------------------------------------------------------Cuota Historico:
-    
-    
+        
     @PostMapping("/cuota")
     ResponseEntity<?> createCuota(@RequestBody Cuota cuota){
     	boolean response = cuotaService.create(cuota);
@@ -126,8 +125,12 @@ public class MainController {
     
     @PostMapping("/condomino")
     ResponseEntity<?> createCondomino(@RequestBody Condomino condomino){
-    	condominoService.create(condomino);
-        return new ResponseEntity("condomino creado", HttpStatus.OK);
+    	boolean response = condominoService.create(condomino);
+    	if (response) {
+    		return new ResponseEntity("condomino creado", HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity("Error: No se pudo crear el condomino", HttpStatus.UNAUTHORIZED);
+    	}
     }
     
     @GetMapping(path = {"/condomino/condominoXcondominio/{id}"})							
@@ -138,8 +141,12 @@ public class MainController {
     
     @PutMapping("/condomino/desactivar/{id}")
     public ResponseEntity<?> disableCondomino(@PathVariable("id") long id){
-    	condominoService.disable(id);
-        return new ResponseEntity("Condomino desabilitado", HttpStatus.OK);
+    	boolean response = condominoService.disable(id);
+    	if (response) {
+    		return new ResponseEntity("Condomino deshabilitado", HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity("Error: No se pudo deshabilitar el condominio", HttpStatus.UNAUTHORIZED);
+    	}
     }
     
     @GetMapping(path = {"/condomino/{id}"})

@@ -22,8 +22,14 @@ public class CondominoServiceImpl implements CondominoService {
         return repo.getByCondominio(id);
     }
     
-    public void create(Condomino condomino){
-        repo.create(condomino.getNombre(), condomino.getIdCondominio() );
+    public boolean create(Condomino condomino){
+    	try {
+    		repo.create(condomino.getNombre(), condomino.getIdCondominio() );
+        	return true;
+    	} catch(Exception e) {
+    		//Error adding Condomino.
+    		return false;
+    	}
     }
         
     public boolean update(Condomino condomino){
@@ -43,8 +49,14 @@ public class CondominoServiceImpl implements CondominoService {
     	return false;       
     }
     
-    public void disable(long id) {
-    	repo.disable(id);
+    public boolean disable(long id) {
+    	try {
+    		repo.disable(id);
+    		return true;
+		} catch (Exception e) {
+			//Error disabling Condomino
+			return false;
+		}
     }
     
 }
