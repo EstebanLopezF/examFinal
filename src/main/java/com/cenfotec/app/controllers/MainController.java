@@ -76,8 +76,12 @@ public class MainController {
     
    @PutMapping("/condominio/desactivar/{id}")
     public ResponseEntity<?> disable(@PathVariable("id") long id){
-    	condominioService.disable(id);
-        return new ResponseEntity("condominio desactivado", HttpStatus.OK);
+	   boolean response = condominioService.disable(id);
+   	if (response) {
+   	 return new ResponseEntity("condominio desactivado", HttpStatus.OK);
+	} else {
+		 return new ResponseEntity("Error: No se pudo desactivar el condominio", HttpStatus.UNAUTHORIZED);
+	}
     }
 
    //------------------------------------------------------------------------------------------------------------Amenidades:
@@ -90,8 +94,12 @@ public class MainController {
     
     @PostMapping("/amenidad")
     ResponseEntity<?> createAmenidad(@RequestBody Amenidad amenidad){
-    	amenidadService.create(amenidad);
-        return new ResponseEntity("Amenidad creada", HttpStatus.OK);
+    	boolean response = amenidadService.create(amenidad);
+    	if (response) {
+    		return new ResponseEntity("Amenidad creada", HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity("Error: La Amenidad no pudo ser creada", HttpStatus.UNAUTHORIZED);
+    	}
     }
     
     //------------------------------------------------------------------------------------------------------------Cuota Historico:

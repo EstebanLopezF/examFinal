@@ -18,8 +18,14 @@ public class AmenidadServiceImpl implements AmenidadService {
         return repo.getByCondominio(id);
     }
     
-    public void create(Amenidad amenidad){
+    public boolean create(Amenidad amenidad){
+    	try {
         repo.create(amenidad.getAmenidad(), amenidad.getIdCondominio());
+        return true;
+    	} catch (Exception e) {
+    		//failed to add Amenidad
+    		return false;
+    	}
     }
     
 }

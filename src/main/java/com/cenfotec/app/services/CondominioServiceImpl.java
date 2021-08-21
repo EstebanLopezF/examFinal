@@ -64,9 +64,14 @@ public class CondominioServiceImpl implements CondominioService {
     	return false;
     }
     
-    public void disable(long id) {
-    	repo.disable(id);
+    public boolean disable(long id) {
+    	try {
+    		repo.disable(id);
+    		return true;
+    	} catch (Exception e) {
+    		//Failed to disable Condominio.
+    		return false;
+        }
     }
-    
 }
 

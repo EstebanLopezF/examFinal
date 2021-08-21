@@ -7,6 +7,6 @@ import java.util.List;
 public interface AmenidadService {
 
     public List<Amenidad> getByCondominio(long id);
-    public void create(Amenidad amenidad);
+    public boolean create(Amenidad amenidad);
     
 }
