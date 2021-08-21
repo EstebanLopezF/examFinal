@@ -6,10 +6,10 @@ import java.util.Optional;
 
 public interface CondominoService {
 
-    public Optional<Condomino> getById(long id);
+    public Condomino getById(long id);
     public void create(Condomino condomino);
     public List<Condomino> getByCondominio(long id);
-    public void update(Condomino condomino);
+    public boolean update(Condomino condomino);
     public void disable(long id);
     
 }

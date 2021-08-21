@@ -29,9 +29,15 @@ public class CondominioServiceImpl implements CondominioService {
         return repo.getByStatus(status);
     }
     
-    public void create(Condominio condominio){
+    public boolean create(Condominio condominio){
+    	try {
         repo.create(condominio.getCantidadUnidades(), condominio.getCedulaJuridica(), condominio.getDireccion(), condominio.getNombre(), 
         		condominio.getRepresentante(), condominio.getEstado(), condominio.getCuota());
+		} catch (Exception e) {
+			//Failed to create Condominio.
+			return false;
+		}
+    	return true;
     }
         
     public boolean update(Condominio condominio){

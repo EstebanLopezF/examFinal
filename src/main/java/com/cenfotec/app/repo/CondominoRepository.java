@@ -14,7 +14,7 @@ public interface CondominoRepository extends JpaRepository<Condomino, Long>{
 
     
     @Query(value = "{call getid_condomino(:idParam)}", nativeQuery = true)
-    Optional<Condomino> getById(@Param("idParam") long id);
+    Condomino getById(@Param("idParam") long id);
 	
     @Query(value = "{call list_condomino_Condominio(:idcondominioParam)}", nativeQuery = true)
     List<Condomino> getByCondominio(@Param("idcondominioParam") long idcondominioParam);

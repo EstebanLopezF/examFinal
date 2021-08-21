@@ -34,7 +34,7 @@ public class MainController {
   //------------------------------------------------------------------------------------------------------------Condominio:
     
     @GetMapping("/condominio")
-    List getAll(){
+    List<Condominio> getAll(){
         return condominioService.getAll();
     }
     
@@ -51,13 +51,17 @@ public class MainController {
     @GetMapping(path = {"/condominio/estado/{status}"})							
     ResponseEntity<List<Condominio>> listaEstado(@PathVariable("status") String status){
         List<Condominio> condominios = condominioService.getByStatus(status);
-        return new ResponseEntity(condominios, HttpStatus.OK);
+        return new ResponseEntity<List<Condominio>>(condominios, HttpStatus.OK);
     }
     	
     @PostMapping("/condominio")
     ResponseEntity<?> create(@RequestBody Condominio condominio){
-    	condominioService.create(condominio);
-        return new ResponseEntity("condominio creado", HttpStatus.OK);
+    	boolean response = condominioService.create(condominio);
+    	if (response) {
+    		return new ResponseEntity("condominio creado", HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity("Error: El Condominio no pudo ser creado", HttpStatus.UNAUTHORIZED);
+    	}
     }
     
     @PutMapping("/condominio")												
@@ -128,9 +132,9 @@ public class MainController {
     
     @GetMapping(path = {"/condomino/{id}"})
     ResponseEntity<Condomino> findCondominoById(@PathVariable long id){
-        Optional<Condomino> result = condominoService.getById(id);
-        if (result.isPresent()){
-            return ResponseEntity.ok().body(result.get());
+        Condomino result = condominoService.getById(id);
+        if (result != null){
+            return ResponseEntity.ok().body(result);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -142,9 +146,6 @@ public class MainController {
         return new ResponseEntity("Condomino actualizado", HttpStatus.OK);
     }
     
-    
-    
-        
 }
 
 
